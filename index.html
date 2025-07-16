@@ -8,7 +8,7 @@
   <!-- PWA Meta Tags -->
   <meta name="theme-color" content="#3B82F6">
   <meta name="description" content="App de productividad para asesores de seguros">
-  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="Productividad">
   
@@ -19,19 +19,15 @@
   <script src="https://cdn.tailwindcss.com"></script>
   
   <!-- React -->
-<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
-<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-  
-  <!-- Lucide Icons -->
-  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
 </head>
 <body>
   <div id="root"></div>
 
   <script type="text/babel">
     const { useState, useEffect } = React;
-    const { Calendar, Plus, Minus, BarChart3, Target, TrendingUp, Award } = lucide;
 
     const ProductivityTracker = () => {
       // Función para convertir fecha a formato mexicano DD/MM/AAAA
@@ -184,7 +180,7 @@
               onClick={() => updateData(field, false)}
               className="w-10 h-10 rounded-full bg-red-500 text-white flex items-center justify-center hover:bg-red-600 transition-colors"
             >
-              <Minus size={20} />
+              -
             </button>
             <div className="text-center">
               <input
@@ -212,7 +208,7 @@
               onClick={() => updateData(field, true)}
               className="w-10 h-10 rounded-full bg-green-500 text-white flex items-center justify-center hover:bg-green-600 transition-colors"
             >
-              <Plus size={20} />
+              +
             </button>
           </div>
         </div>
@@ -229,7 +225,7 @@
               {/* Selector de fecha */}
               <div className="flex justify-center mb-6">
                 <div className="flex items-center space-x-4">
-                  <Calendar className="text-blue-500" size={20} />
+                  <span className="text-blue-500">📅</span>
                   <input
                     type="text"
                     value={displayDate}
@@ -284,7 +280,7 @@
                 {/* Resumen del día */}
                 <div className="bg-white rounded-lg shadow-lg p-6 mb-8">
                   <h2 className="text-xl font-semibold text-gray-800 mb-4 flex items-center">
-                    <Target className="mr-2 text-blue-500" />
+                    <span className="mr-2 text-blue-500">🎯</span>
                     Resumen del Día
                   </h2>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -410,7 +406,7 @@
                 {/* Resumen semanal */}
                 <div className="bg-white rounded-lg shadow-lg p-6">
                   <h2 className="text-xl font-semibold text-gray-800 mb-4 flex items-center">
-                    <BarChart3 className="mr-2 text-blue-500" />
+                    <span className="mr-2 text-blue-500">📊</span>
                     Resumen Semanal
                   </h2>
                   <div className="mb-4">
@@ -450,7 +446,7 @@
                 {/* Resumen mensual */}
                 <div className="bg-white rounded-lg shadow-lg p-6">
                   <h2 className="text-xl font-semibold text-gray-800 mb-4 flex items-center">
-                    <TrendingUp className="mr-2 text-green-500" />
+                    <span className="mr-2 text-green-500">📈</span>
                     Resumen Mensual
                   </h2>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -471,7 +467,8 @@
       );
     };
 
-    ReactDOM.render(<ProductivityTracker />, document.getElementById('root'));
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<ProductivityTracker />);
 
     // Service Worker Registration para PWA
     if ('serviceWorker' in navigator) {
